@@ -2,10 +2,10 @@
 
 This gem has been created to abstract and unify iteractions with social networks.
 
-[![Build Status](https://secure.travis-ci.org/gumayunov/social_hamster.png)](http://travis-ci.org/gumayunov/social_hamster)
+[![Build Status](https://secure.travis-ci.org/gumayunov/social-hamster.png)](http://travis-ci.org/gumayunov/social-hamster)
 
 ## Basic Usage
-
+```ruby
     # app/services/social_service.rb
 
     class SocialService
@@ -36,10 +36,17 @@ This gem has been created to abstract and unify iteractions with social networks
       flash[:error] = "Cant access #{params[:provider].capitalize}. Try again later"
       redirect_to social_friendlists_path
     end
+```
 
 
 ## TODO
 
+
+* Twitter
+* Vkontakte
+* Mailru
+* Wall/status posting (FB, twitter, vkontakte)
+* Direct messages (mailru, twitter)
 * Extract networks into gems
 
 ## License
