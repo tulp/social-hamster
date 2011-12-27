@@ -6,21 +6,24 @@ describe SocialHamster do
 
     before :all do
       module SocialHamster
-        class Hypernet
-          def initialize(credentials)
+        module Hypernet
+          class Gateway
+            def initialize(credentials)
+            end
           end
         end
       end
+      @gateway_class = SocialHamster::Hypernet::Gateway
     end
 
     it "instatize gateway according to provider" do
       connection = SocialHamster.connect(:hypernet, {})
-      connection.class.should == SocialHamster::Hypernet
+      connection.class.should == @gateway_class
     end
 
     it "passes credentials into gateway constructor" do
       credentials = {:a => 1}
-      SocialHamster::Hypernet.should_receive(:new).with(credentials)
+      @gateway_class.should_receive(:new).with(credentials)
       SocialHamster.connect(:hypernet, credentials)
     end
 

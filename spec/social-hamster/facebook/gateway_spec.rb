@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SocialHamster::Facebook::Gateway do
 
   before :each do
-    @opts = {:access_token => 'abc'}
+    @opts = {:token => 'abc'}
   end
 
   subject do
@@ -13,7 +13,6 @@ describe SocialHamster::Facebook::Gateway do
   describe "constructor" do
 
     it "can be created with non empty :access_token option" do
-      @opts = {:access_token => 'abc'}
       subject.should_not be_nil
     end
 

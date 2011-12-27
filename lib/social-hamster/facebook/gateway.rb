@@ -2,11 +2,11 @@ require 'koala'
 
 module SocialHamster
   module Facebook
-    class Gateway
+    class Gateway < SocialHamster::BaseGateway
 
       def initialize(opts)
-        @access_token = opts[:access_token]
-        if @access_token.nil? || @access_token.empty?
+        @opts = ::Hashie::Mash.new(opts)
+        if access_token.nil? || access_token.empty?
           raise "Cant connect to Facebook without access_token. Options: #{opts.inspect}"
         end
       end
@@ -33,8 +33,12 @@ module SocialHamster
 
       private
 
+      def access_token
+        @opts.token
+      end
+
       def api
-        @api ||= Koala::Facebook::API.new(@access_token)
+        @api ||= Koala::Facebook::API.new(access_token)
       end
 
     end
