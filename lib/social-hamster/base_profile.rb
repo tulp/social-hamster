@@ -6,7 +6,7 @@ module SocialHamster
 
     extend Forwardable
 
-    def_delegators :@data, :first_name, :last_name, :birthday, :gender
+    def_delegators :@data, :name, :first_name, :last_name, :birthday, :gender
     def_delegators :@data, :uid, :email, :picture, :link
 
     def initialize(raw)

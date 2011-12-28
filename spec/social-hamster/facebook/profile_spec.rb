@@ -14,10 +14,20 @@ describe SocialHamster::Facebook::Profile do
     subject.should_not be_nil
   end
 
-  %w{uid first_name last_name gender link picture}.each do |field|
+  %w{uid name first_name last_name gender link picture}.each do |field|
     it "provides ##{field}" do
       subject.send(field).should_not be_nil
     end
+  end
+
+  describe "#name" do
+
+    it "is composed from first_name and last_name" do
+      @fb_user[:first_name] = "11"
+      @fb_user[:last_name] = "22"
+      subject.name.should == "11 22"
+    end
+
   end
 
   describe "#picture" do
