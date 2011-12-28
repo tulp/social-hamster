@@ -7,7 +7,7 @@ module SocialHamster
     extend Forwardable
 
     def_delegators :@data, :name, :first_name, :last_name, :birthday, :gender
-    def_delegators :@data, :uid, :email, :picture, :link
+    def_delegators :@data, :uid, :email, :picture_url, :link
 
     def initialize(raw)
       if raw.is_a?(Hash)

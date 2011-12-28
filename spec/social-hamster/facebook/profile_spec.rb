@@ -14,7 +14,7 @@ describe SocialHamster::Facebook::Profile do
     subject.should_not be_nil
   end
 
-  %w{uid name first_name last_name gender link picture}.each do |field|
+  %w{uid name first_name last_name gender link picture_url}.each do |field|
     it "provides ##{field}" do
       subject.send(field).should_not be_nil
     end
@@ -30,11 +30,16 @@ describe SocialHamster::Facebook::Profile do
 
   end
 
-  describe "#picture" do
+  describe "#picture_url" do
+
+    it "uses initial hash picture key" do
+      @fb_user[:picture] = "123.jpg"
+      subject.picture_url.should == "123.jpg"
+    end
 
     it "composes picture value from id" do
       url = "http://graph.facebook.com/100045296377/picture"
-      subject.picture.should == url
+      subject.picture_url.should == url
     end
 
   end

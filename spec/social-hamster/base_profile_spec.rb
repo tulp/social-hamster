@@ -29,8 +29,8 @@ describe SocialHamster::BaseProfile do
   end
 
   it "handles string keys as well" do
-    @raw['picture'] = "url.jpg"
-    subject.picture.should == "url.jpg"
+    @raw['picture_url'] = "url.jpg"
+    subject.picture_url.should == "url.jpg"
   end
 
 
