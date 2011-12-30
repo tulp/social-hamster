@@ -52,4 +52,8 @@ describe SocialHamster::Facebook::Gateway do
 
   end
 
+  describe ".get_users_info" do
+
+  end
+
 end

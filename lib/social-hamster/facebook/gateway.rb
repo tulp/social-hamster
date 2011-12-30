@@ -14,10 +14,18 @@ module SocialHamster
       def get_friends
         friends_info = []
         friends = api.get_connections('me', 'friends')
-        friends.each_slice(50) do |portion|
+
+        return friends.map{|f| Profile.new(f)}
+
+      rescue Koala::Facebook::APIError, RuntimeError => e
+        raise Error.new "#{e.class}: #{e.message}"
+      end
+
+      def get_users_info(uids)
+        uids.each_slice(50) do |portion|
           part_result = api.batch do |batch_api|
-            portion.each do |obj|
-              batch_api.get_objects(obj['id'])
+            portion.each do |uid|
+              batch_api.get_objects(uid)
             end
           end
           part_result.each do |h|
@@ -27,8 +35,6 @@ module SocialHamster
 
         return friends_info.map{|f| Profile.new(f)}
 
-      rescue Koala::Facebook::APIError, RuntimeError => e
-        raise Error.new "#{e.class}: #{e.message}"
       end
 
       private
